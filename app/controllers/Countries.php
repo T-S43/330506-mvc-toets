@@ -6,12 +6,16 @@ class Countries extends Controller {
 
     public function index() {
         $countries = $this->countriesModel->getCountries();
-
+        $rows = "";
+        foreach ($countries as $value) {
+            $rows .= $value->id . " " . $value->name . " " . $value->capitalCity . " " . $value->population;
+            $rows .= "<br>";
+        }
         $data = [
-            'title' => 'Home page',
-            'countries' => $countries
+            'title' => 'Landen',
+            'countries' => $rows
         ];
 
-        $this->view('index', $data);
+        $this->view('countries/index', $data);
     }
 }
